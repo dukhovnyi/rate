@@ -5,6 +5,9 @@
       location = "container:App/App.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:CommonUI/CommonUI.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:CalculatorSDK/CalculatorSDK.xcodeproj">
    </FileRef>
 </Workspace>

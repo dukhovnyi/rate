@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7540AA7F2925451A0029AA30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AA7E2925451A0029AA30 /* AppDelegate.swift */; };
-		7540AA812925451A0029AA30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AA802925451A0029AA30 /* SceneDelegate.swift */; };
-		7540AA862925451A0029AA30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7540AA842925451A0029AA30 /* Main.storyboard */; };
 		7540AA882925451B0029AA30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7540AA872925451B0029AA30 /* Assets.xcassets */; };
 		7540AA8B2925451B0029AA30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7540AA892925451B0029AA30 /* LaunchScreen.storyboard */; };
 		7540AA962925451B0029AA30 /* AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AA952925451B0029AA30 /* AppTests.swift */; };
@@ -57,13 +55,32 @@
 			remoteGlobalIDString = 7540AA59292545000029AA30;
 			remoteInfo = CalculatorSDK;
 		};
+		7540AB2529256CE50029AA30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7540AB2029256CE50029AA30 /* CommonUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7540AAE829256C290029AA30;
+			remoteInfo = CommonUI;
+		};
+		7540AB2729256CE50029AA30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7540AB2029256CE50029AA30 /* CommonUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7540AAF029256C290029AA30;
+			remoteInfo = CommonUITests;
+		};
+		7540AB2929256CEE0029AA30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7540AB2029256CE50029AA30 /* CommonUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7540AAE729256C290029AA30;
+			remoteInfo = CommonUI;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		7540AA7B2925451A0029AA30 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7540AA7E2925451A0029AA30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7540AA802925451A0029AA30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7540AA852925451A0029AA30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7540AA872925451B0029AA30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7540AA8A2925451B0029AA30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7540AA8C2925451B0029AA30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,6 +94,7 @@
 		7540AAC429254BE60029AA30 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Regular.ttf"; path = "../../../../../Downloads/Inter/static/Inter-Regular.ttf"; sourceTree = "<group>"; };
 		7540AAC529254BE60029AA30 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Bold.ttf"; path = "../../../../../Downloads/Inter/static/Inter-Bold.ttf"; sourceTree = "<group>"; };
 		7540AAC929254C800029AA30 /* UIFont.InterFontFamily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.InterFontFamily.swift; sourceTree = "<group>"; };
+		7540AB2029256CE50029AA30 /* CommonUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommonUI.xcodeproj; path = ../CommonUI/CommonUI.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,10 +146,9 @@
 		7540AA7D2925451A0029AA30 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				7540AAC329254BC30029AA30 /* Resources */,
 				7540AABE2925492B0029AA30 /* Sources */,
+				7540AAC329254BC30029AA30 /* Resources */,
 				7540AA7E2925451A0029AA30 /* AppDelegate.swift */,
-				7540AA802925451A0029AA30 /* SceneDelegate.swift */,
 				7540AA8C2925451B0029AA30 /* Info.plist */,
 			);
 			path = App;
@@ -157,6 +174,7 @@
 		7540AAB2292545A40029AA30 /* References */ = {
 			isa = PBXGroup;
 			children = (
+				7540AB2029256CE50029AA30 /* CommonUI.xcodeproj */,
 				7540AAB3292545B00029AA30 /* CalculatorSDK.xcodeproj */,
 			);
 			name = References;
@@ -193,7 +211,6 @@
 			children = (
 				7540AAC529254BE60029AA30 /* Inter-Bold.ttf */,
 				7540AAC429254BE60029AA30 /* Inter-Regular.ttf */,
-				7540AA842925451A0029AA30 /* Main.storyboard */,
 				7540AA872925451B0029AA30 /* Assets.xcassets */,
 				7540AA892925451B0029AA30 /* LaunchScreen.storyboard */,
 			);
@@ -206,6 +223,15 @@
 				7540AAC929254C800029AA30 /* UIFont.InterFontFamily.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7540AB2129256CE50029AA30 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7540AB2629256CE50029AA30 /* CommonUI.framework */,
+				7540AB2829256CE50029AA30 /* CommonUITests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +248,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7540AB2A29256CEE0029AA30 /* PBXTargetDependency */,
 				7540AABD292545C50029AA30 /* PBXTargetDependency */,
 			);
 			name = App;
@@ -304,6 +331,10 @@
 					ProductGroup = 7540AAB4292545B00029AA30 /* Products */;
 					ProjectRef = 7540AAB3292545B00029AA30 /* CalculatorSDK.xcodeproj */;
 				},
+				{
+					ProductGroup = 7540AB2129256CE50029AA30 /* Products */;
+					ProjectRef = 7540AB2029256CE50029AA30 /* CommonUI.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -329,6 +360,20 @@
 			remoteRef = 7540AABA292545B00029AA30 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		7540AB2629256CE50029AA30 /* CommonUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonUI.framework;
+			remoteRef = 7540AB2529256CE50029AA30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7540AB2829256CE50029AA30 /* CommonUITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CommonUITests.xctest;
+			remoteRef = 7540AB2729256CE50029AA30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -340,7 +385,6 @@
 				7540AAC729254BE60029AA30 /* Inter-Bold.ttf in Resources */,
 				7540AA882925451B0029AA30 /* Assets.xcassets in Resources */,
 				7540AAC629254BE60029AA30 /* Inter-Regular.ttf in Resources */,
-				7540AA862925451A0029AA30 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +411,6 @@
 			files = (
 				7540AA7F2925451A0029AA30 /* AppDelegate.swift in Sources */,
 				7540AACA29254C800029AA30 /* UIFont.InterFontFamily.swift in Sources */,
-				7540AA812925451A0029AA30 /* SceneDelegate.swift in Sources */,
 				7540AAC229254B6E0029AA30 /* RootViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,17 +450,14 @@
 			name = CalculatorSDK;
 			targetProxy = 7540AABC292545C50029AA30 /* PBXContainerItemProxy */;
 		};
+		7540AB2A29256CEE0029AA30 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CommonUI;
+			targetProxy = 7540AB2929256CEE0029AA30 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		7540AA842925451A0029AA30 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7540AA852925451A0029AA30 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7540AA892925451B0029AA30 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -548,15 +588,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -564,6 +605,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dukhovnyi.App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -575,15 +617,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -591,6 +634,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dukhovnyi.App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
