@@ -7,4 +7,6 @@
 
 import Foundation
 
+/// The main SDK namespace for CalculatorSDK.
+///
 public enum Calculator {}
