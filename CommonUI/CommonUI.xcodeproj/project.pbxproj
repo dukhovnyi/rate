@@ -20,6 +20,7 @@
 		7540AB2C29256E9F0029AA30 /* UIColor.Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB2B29256E9F0029AA30 /* UIColor.Extensions.swift */; };
 		7540AB442925869B0029AA30 /* AssetBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB432925869B0029AA30 /* AssetBuilder.swift */; };
 		7540AB4C2925996E0029AA30 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB4B2925996E0029AA30 /* TableViewCell.swift */; };
+		7540AB5729263D9C0029AA30 /* UIViewController.Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB5629263D9C0029AA30 /* UIViewController.Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		7540AB2B29256E9F0029AA30 /* UIColor.Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.Extensions.swift; sourceTree = "<group>"; };
 		7540AB432925869B0029AA30 /* AssetBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetBuilder.swift; sourceTree = "<group>"; };
 		7540AB4B2925996E0029AA30 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		7540AB5629263D9C0029AA30 /* UIViewController.Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				7540AB1629256CB70029AA30 /* UIView.Extensions.swift */,
 				7540AB2B29256E9F0029AA30 /* UIColor.Extensions.swift */,
 				7540AB432925869B0029AA30 /* AssetBuilder.swift */,
+				7540AB5629263D9C0029AA30 /* UIViewController.Extensions.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				7540AB1C29256CB70029AA30 /* NSLayoutConstraint.Extension.swift in Sources */,
 				7540AB1B29256CB70029AA30 /* Layoutable.swift in Sources */,
 				7540AB1929256CB70029AA30 /* View.swift in Sources */,
+				7540AB5729263D9C0029AA30 /* UIViewController.Extensions.swift in Sources */,
 				7540AB1D29256CB70029AA30 /* UIView.Extensions.swift in Sources */,
 				7540AB4C2925996E0029AA30 /* TableViewCell.swift in Sources */,
 				7540AB1A29256CB70029AA30 /* Makeable.swift in Sources */,

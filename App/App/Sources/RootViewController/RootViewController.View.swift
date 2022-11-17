@@ -12,6 +12,10 @@ extension RootViewController {
 
     final class RootView: View {
 
+        let contentView = UIView()
+
+        let row = UIView()
+
         let requestButton = UIButton(type: .system).make {
             $0.setTitleColor(.darkGray, for: .normal)
             $0.backgroundColor = .init(hex: "#EDF0F4")
@@ -40,6 +44,8 @@ extension RootViewController {
 
         override func setup() {
             super.setup()
+            addSubview(contentView)
+            contentView.addSubview(row)
             addSubview(buttonsStack)
         }
 
@@ -48,9 +54,21 @@ extension RootViewController {
 
             backgroundColor = .white
             var constraints = [NSLayoutConstraint](); defer { constraints.activate() }
-            constraints += buttonsStack.layoutInSuperview(edges: .horizontal, insets: .init(top: 0, left: 32, bottom: 0, right: 32))
-            constraints += buttonsStack.layoutIn(safeAreaLayoutGuide, edges: .bottom, insets: .init(top: 0, left: 0, bottom: 16, right: 0))
+
+            constraints += contentView.layoutInSuperview()
+            constraints += buttonsStack.layoutIn(
+                safeAreaLayoutGuide,
+                edges: .horizontal,
+                insets: .init(top: 0, left: 16, bottom: 16, right: 16)
+            )
+            constraints += buttonsStack.layoutIn(
+                safeAreaLayoutGuide,
+                edges: .bottom,
+                insets: .init(top: 0, left: 0, bottom: 16, right: 0)
+            )
             constraints += buttonsStack.match(.height, value: 48)
+
+            constraints += row.layoutIn(safeAreaLayoutGuide, edges: [.horizontal, .top])
         }
     }
 }

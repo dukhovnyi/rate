@@ -10,18 +10,18 @@ import UIKit
 
 extension Calculator {
 
-    final public class SendingViewController: ViewController<SendingView> {
+    final class SendingViewController: ViewController<SendingView> {
 
-        public override init() {
-            self.viewModel = .init()
+        init(
+            viewModel: ViewModel
+        ) {
+            self.viewModel = viewModel
             super.init()
-
-            viewModel.fetchCurrencies()
         }
 
-        public override func viewDidLoad() {
+        override func viewDidLoad() {
             super.viewDidLoad()
-            
+
             contentView.tableView.dataSource = self
             contentView.tableView.delegate = self
             contentView.tableView.rowHeight = UITableView.automaticDimension
@@ -58,5 +58,11 @@ extension Calculator.SendingViewController: UITableViewDataSource, UITableViewDe
     ) -> UIView? {
 
         TableHeaderView(model: .init(title: "All countries"))
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        viewModel.didSelect?(viewModel.currencies[indexPath.row])
+        dismiss(animated: true)
     }
 }

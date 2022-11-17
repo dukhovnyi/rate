@@ -24,7 +24,7 @@ open class ViewController<T: View>: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func loadView() {
+    open override func loadView() {
         view = T()
     }
 }

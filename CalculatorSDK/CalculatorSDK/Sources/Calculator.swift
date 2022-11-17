@@ -14,8 +14,12 @@ public final class Calculator {
 
     public init() {}
 
-    public func makeSendingViewController() -> SendingViewController {
-        SendingViewController()
+    public func makeComparisonViewController(
+        viewModel: ComparisonViewController.ViewModel
+    ) -> ComparisonViewController {
+        ComparisonViewController(
+            viewModel: viewModel
+        )
     }
 }
 

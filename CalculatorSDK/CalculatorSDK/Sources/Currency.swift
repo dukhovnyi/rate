@@ -17,7 +17,39 @@ extension Calculator {
         public let sending: ClosedRange<UInt>
         public let receiving: ClosedRange<UInt>
         public let defaultSending: UInt
+
+        public init(
+            name: String,
+            img: String,
+            code: String,
+            sending: ClosedRange<UInt>,
+            receiving: ClosedRange<UInt>,
+            defaultSending: UInt
+        ) {
+            self.name = name
+            self.img = img
+            self.code = code
+            self.sending = sending
+            self.receiving = receiving
+            self.defaultSending = defaultSending
+        }
     }
+}
+
+extension [Calculator.Currency] {
+
+    public static let mock: Self = {
+        guard
+            let url = Bundle(for: Calculator.self).url(forResource: "mock", withExtension: "json"),
+            let jsonData = try? Data(contentsOf: url),
+            let currencies = try? JSONDecoder().decode([Calculator.Currency].self, from: jsonData)
+        else {
+            assertionFailure("Currency mock file is missed or has incorrect format.")
+            return []
+        }
+
+        return currencies
+    }()
 }
 
 extension Calculator.Currency: Codable {

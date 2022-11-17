@@ -84,7 +84,7 @@
             "to" : 50000,
             "from" : 0
         },
-        "name" : "Hrivna",
+        "name" : "Hryvnia",
         "defaultSending" : 1000,
         "receiving" : {
             "from" : 0
