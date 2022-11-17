@@ -5,55 +5,41 @@
 //  Created by Yurii Dukhovnyi on 16.11.2022.
 //
 
+import CalculatorSDK
 import CommonUI
 import UIKit
 
 final class RootViewController: ViewController<RootViewController.RootView> {
-}
 
-extension RootViewController {
+    override init() {
 
-    final class RootView: View {
+        self.calculator = Calculator()
+        Calculator.register(assetBuilder: .default())
 
-        let requestButton = UIButton(type: .system).make {
-            $0.setTitleColor(.darkGray, for: .normal)
-            $0.backgroundColor = .init(hex: "#EDF0F4")
-            $0.setTitle("Request", for: .normal)
-            $0.setImage(.init(named: "arrow-down"), for: .normal)
-            $0.tintColor = .darkGray
-            $0.titleLabel?.font = .interOrDefault(face: .bold, size: 16)
-            $0.imageEdgeInsets = .init(top: 0, left: -32, bottom: 0, right: 0)
-            $0.layer.cornerRadius = 12
-            $0.isEnabled = false
-        }
-        let sendButton = UIButton(type: .system).make {
-            $0.setTitleColor(.white, for: .normal)
-            $0.backgroundColor = .init(hex: "#317FF5")
-            $0.setTitle("Send", for: .normal)
-            $0.tintColor = .white
-            $0.setImage(.init(named: "arrow-up"), for: .normal)
-            $0.titleLabel?.font = .interOrDefault(face: .bold, size: 16)
-            $0.imageEdgeInsets = .init(top: 0, left: -32, bottom: 0, right: 0)
-            $0.layer.cornerRadius = 12
-        }
-        lazy var buttonsStack = UIStackView.make(.horizontal, spacing: 16, distribution: .fillEqually)(
-           requestButton,
-           sendButton
-       )
+        super.init()
+    }
 
-        override func setup() {
-            super.setup()
-            addSubview(buttonsStack)
-        }
+    override func viewDidLoad() {
 
-        override func defineLayout() {
-            super.defineLayout()
+        super.viewDidLoad()
 
-            backgroundColor = .white
-            var constraints = [NSLayoutConstraint](); defer { constraints.activate() }
-            constraints += buttonsStack.layoutInSuperview(edges: .horizontal, insets: .init(top: 0, left: 32, bottom: 0, right: 32))
-            constraints += buttonsStack.layoutIn(safeAreaLayoutGuide, edges: .bottom)
-            constraints += buttonsStack.match(.height, value: 48)
-        }
+        contentView.sendButton.addTarget(
+            self,
+            action: #selector(sendButtonTouchUpInside),
+            for: .touchUpInside
+        )
+    }
+
+    // MARK: - Private
+
+    private let calculator: Calculator
+
+    @objc
+    private func sendButtonTouchUpInside(_ sender: UIButton) {
+
+        present(
+            calculator.makeSendingViewController(),
+            animated: true
+        )
     }
 }

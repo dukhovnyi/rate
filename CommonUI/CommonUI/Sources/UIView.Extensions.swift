@@ -9,6 +9,8 @@ import UIKit
 
 extension UIView {
 
+    /// Defines available edges for establishing constratins.
+    ///
     public struct Edge: OptionSet {
 
         public let rawValue: Int
@@ -32,6 +34,8 @@ extension UIView {
         public static let all: Edge = [.horizontal, .vertical]
     }
 
+    /// Defines available dimensions for establishing constratins.
+    ///
     public struct Dimension: OptionSet {
 
         public let rawValue: Int
@@ -46,6 +50,8 @@ extension UIView {
         public static let all: Dimension = [.width, .height]
     }
 
+    /// Defines available aligns for establishing constratins.
+    ///
     public struct Align: OptionSet {
 
         public let rawValue: Int
@@ -59,7 +65,7 @@ extension UIView {
         public static let center: Align = [.horizontal, .vertical]
     }
 
-    /// Create constraints to layout the current view in the center of superview. Created constraints rely on
+    /// Creates constraints to layout the current view in the center of superview. Created constraints rely on
     ///  `centerAnchor` of superview and the result array will not contain any trailing/leading/width/height constraints.
     /// - Returns: Array of constraints or empty array, if the current view doesn't have superview.
     public func layoutInSuperviewCenter(
@@ -81,9 +87,10 @@ extension UIView {
         )
     }
 
-    /// Create constraints to layout the current view in the center of passed guide (ex.: superview,
+    /// Creates constraints to layout the current view in the center of passed guide (ex.: superview,
     ///  safeAreaLayoutGuide, etc.). Created constraints rely only on `centerXAnchor` and `centerYAnchor` anchors.
     /// - Returns: Array of constraints.
+    ///
     public func layoutInCenter(
         _ guide: Layoutable,
         edges: Align = .center,
@@ -106,10 +113,11 @@ extension UIView {
         return constraints
     }
 
-    /// Create constraints to layout the current view in the superview and rely on passed parameters `edges` and
+    /// Creates constraints to layout the current view in the superview and rely on passed parameters `edges` and
     ///  `insets`. Created constraints rely on `topAnchor`, `bottomAnchor`, `leadingAnchor`, `trailingAnchor` anchors
     ///  and doesn't rely on `widhtAnchor`, `heightAnchor`.
     /// - Returns: Array of constraints or empty array, if the current view doesn't have superview.
+    ///
     public func layoutInSuperview(
         edges: Edge = .all,
         insets: UIEdgeInsets = .zero,
@@ -133,6 +141,7 @@ extension UIView {
     ///  on `topAnchor`, `leadingAnchor`, `trailingAnchor` anchors, and don't rely on `bottomAnchor` (since it is
     ///  layouting inside scroll view), `widhtAnchor`, `heightAnchor`.
     /// - Returns: Array of constraints or empty array, if the current view doesn't have superview.
+    ///
     public func layoutInScrollView(
         edges: Edge = .all,
         insets: UIEdgeInsets = .zero,
@@ -166,7 +175,11 @@ extension UIView {
         return constraints
     }
 
-    // swiftlint:disable function_body_length
+    /// Create constraints to layout the current view in the guide and rely on passed parameters `edges` and
+    ///  `insets`. Created constraints rely on `topAnchor`, `bottomAnchor`, `leadingAnchor`, `trailingAnchor` anchors
+    ///  and doesn't rely on `widhtAnchor`, `heightAnchor`.
+    /// - Returns: Array of constraints or empty array, if the current view doesn't have superview.
+    ///
     public func layoutIn(
         _ guide: Layoutable,
         edges: Edge = .all,
@@ -254,10 +267,11 @@ extension UIView {
 
         return constraints
     }
-    // swiftlint:enable function_body_length
-    /// Create constraints to match the current view sizes with the passed value. Created constraints rely on
+
+    /// Creates constraints to match the current view sizes with the passed value. Created constraints rely on
     /// `widthAnchor` and `heightAnchor`.
     /// - Returns: Array of constraints or empty array.
+    /// 
     public func match(
         _ dimension: Dimension = .all,
         value: CGFloat,

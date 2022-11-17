@@ -9,7 +9,10 @@ import UIKit
 
 extension UIColor {
 
+    /// Creates ``UIColor`` instance based on hex-decimal code.
+    /// 
     public convenience init?(hex: String) {
+
         var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
         hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
 

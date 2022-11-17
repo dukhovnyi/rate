@@ -1,0 +1,93 @@
+[
+    {
+        "code" : "DKK",
+        "img": "DK - Denmark",
+        "sending" : {
+            "to" : 35000,
+            "from" : 0
+        },
+        "name" : "Danish krone",
+        "defaultSending" : 700,
+        "receiving" : {
+            "from" : 0
+        }
+    },
+    {
+        "code" : "HRK",
+        "img": "HR - Croatia (Hrvatska)",
+        "sending" : {
+            "to" : 40000,
+            "from" : 0
+        },
+        "name" : "Kuna",
+        "defaultSending" : 700,
+        "receiving" : {
+            "from" : 0
+        }
+    },
+    {
+        "code" : "JPY",
+        "img": "JP - Japan",
+        "sending" : {
+            "to" : 40000,
+            "from" : 0
+        },
+        "name" : "Yen",
+        "defaultSending" : 100,
+        "receiving" : {
+            "from" : 0
+        }
+    },
+    {
+        "code" : "PLN",
+        "img": "PL - Poland",
+        "sending" : {
+            "to" : 20000,
+            "from" : 0
+        },
+        "name" : "Polish zloty",
+        "defaultSending" : 300,
+        "receiving" : {
+            "from" : 0
+        }
+    },
+    {
+        "code" : "EUR",
+        "img": "EUROPE",
+        "sending" : {
+            "to" : 5000,
+            "from" : 0
+        },
+        "name" : "Euro",
+        "defaultSending" : 100,
+        "receiving" : {
+            "from" : 0
+        }
+    },
+    {
+        "code" : "GBP",
+        "img": "GB-NIR_ - Northern Ireland",
+        "sending" : {
+            "to" : 1000,
+            "from" : 0
+        },
+        "name" : "British Pound",
+        "defaultSending" : 70,
+        "receiving" : {
+            "from" : 0
+        }
+    },
+    {
+        "code" : "UAH",
+        "img": "UA - Ukraine",
+        "sending" : {
+            "to" : 50000,
+            "from" : 0
+        },
+        "name" : "Hrivna",
+        "defaultSending" : 1000,
+        "receiving" : {
+            "from" : 0
+        }
+    }
+]

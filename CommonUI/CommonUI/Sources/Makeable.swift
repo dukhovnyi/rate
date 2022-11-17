@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Provides mechanism for easiest way to do pre-setup object.
 public protocol Makeable {}
 
 extension Makeable where Self: UIView {
@@ -20,4 +21,5 @@ extension Makeable where Self: UIView {
     }
 }
 
+// Injects `make` functions to `UIView`.
 extension UIView: Makeable {}

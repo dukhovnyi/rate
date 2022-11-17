@@ -11,7 +11,13 @@
 		7540AA68292545000029AA30 /* CalculatorSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AA67292545000029AA30 /* CalculatorSDKTests.swift */; };
 		7540AA69292545000029AA30 /* CalculatorSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 7540AA5D292545000029AA30 /* CalculatorSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7540AAAF2925456E0029AA30 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AAAE2925456E0029AA30 /* Calculator.swift */; };
-		7540AAD529255C250029AA30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AAD429255C250029AA30 /* ViewController.swift */; };
+		7540AAD529255C250029AA30 /* SendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AAD429255C250029AA30 /* SendingViewController.swift */; };
+		7540AB2F292576B90029AA30 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB2E292576B90029AA30 /* Currency.swift */; };
+		7540AB322925825D0029AA30 /* preset.json in Resources */ = {isa = PBXBuildFile; fileRef = 7540AB312925825D0029AA30 /* preset.json */; };
+		7540AB46292591280029AA30 /* SendingViewController.SendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB45292591280029AA30 /* SendingViewController.SendingView.swift */; };
+		7540AB4A292594E20029AA30 /* SendingViewController.Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB49292594E20029AA30 /* SendingViewController.Cell.swift */; };
+		7540AB4F292632A20029AA30 /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB4E292632A20029AA30 /* TableHeaderView.swift */; };
+		7540AB52292639880029AA30 /* SendingViewController.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB51292639880029AA30 /* SendingViewController.ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,6 +28,27 @@
 			remoteGlobalIDString = 7540AA59292545000029AA30;
 			remoteInfo = CalculatorSDK;
 		};
+		7540AB3D292585B00029AA30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7540AB38292585B00029AA30 /* CommonUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7540AAE829256C290029AA30;
+			remoteInfo = CommonUI;
+		};
+		7540AB3F292585B00029AA30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7540AB38292585B00029AA30 /* CommonUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7540AAF029256C290029AA30;
+			remoteInfo = CommonUITests;
+		};
+		7540AB41292585C10029AA30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7540AB38292585B00029AA30 /* CommonUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7540AAE729256C290029AA30;
+			remoteInfo = CommonUI;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +57,14 @@
 		7540AA62292545000029AA30 /* CalculatorSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7540AA67292545000029AA30 /* CalculatorSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorSDKTests.swift; sourceTree = "<group>"; };
 		7540AAAE2925456E0029AA30 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
-		7540AAD429255C250029AA30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7540AAD429255C250029AA30 /* SendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingViewController.swift; sourceTree = "<group>"; };
+		7540AB2E292576B90029AA30 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		7540AB312925825D0029AA30 /* preset.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = preset.json; sourceTree = "<group>"; };
+		7540AB38292585B00029AA30 /* CommonUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommonUI.xcodeproj; path = ../CommonUI/CommonUI.xcodeproj; sourceTree = "<group>"; };
+		7540AB45292591280029AA30 /* SendingViewController.SendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingViewController.SendingView.swift; sourceTree = "<group>"; };
+		7540AB49292594E20029AA30 /* SendingViewController.Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingViewController.Cell.swift; sourceTree = "<group>"; };
+		7540AB4E292632A20029AA30 /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
+		7540AB51292639880029AA30 /* SendingViewController.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingViewController.ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +91,7 @@
 			children = (
 				7540AA5C292545000029AA30 /* CalculatorSDK */,
 				7540AA66292545000029AA30 /* CalculatorSDKTests */,
+				7540AB37292585A60029AA30 /* References */,
 				7540AA5B292545000029AA30 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,9 +108,9 @@
 		7540AA5C292545000029AA30 /* CalculatorSDK */ = {
 			isa = PBXGroup;
 			children = (
+				7540AB302925823E0029AA30 /* Resources */,
+				7540AB2D292576960029AA30 /* Sources */,
 				7540AA5D292545000029AA30 /* CalculatorSDK.h */,
-				7540AAAE2925456E0029AA30 /* Calculator.swift */,
-				7540AAD429255C250029AA30 /* ViewController.swift */,
 			);
 			path = CalculatorSDK;
 			sourceTree = "<group>";
@@ -86,6 +121,61 @@
 				7540AA67292545000029AA30 /* CalculatorSDKTests.swift */,
 			);
 			path = CalculatorSDKTests;
+			sourceTree = "<group>";
+		};
+		7540AB2D292576960029AA30 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				7540AB4D292632950029AA30 /* TableHeaderView */,
+				7540AB35292585650029AA30 /* SendingViewController */,
+				7540AAAE2925456E0029AA30 /* Calculator.swift */,
+				7540AB2E292576B90029AA30 /* Currency.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		7540AB302925823E0029AA30 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7540AB312925825D0029AA30 /* preset.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7540AB35292585650029AA30 /* SendingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7540AAD429255C250029AA30 /* SendingViewController.swift */,
+				7540AB51292639880029AA30 /* SendingViewController.ViewModel.swift */,
+				7540AB45292591280029AA30 /* SendingViewController.SendingView.swift */,
+				7540AB49292594E20029AA30 /* SendingViewController.Cell.swift */,
+			);
+			path = SendingViewController;
+			sourceTree = "<group>";
+		};
+		7540AB37292585A60029AA30 /* References */ = {
+			isa = PBXGroup;
+			children = (
+				7540AB38292585B00029AA30 /* CommonUI.xcodeproj */,
+			);
+			name = References;
+			sourceTree = "<group>";
+		};
+		7540AB39292585B00029AA30 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7540AB3E292585B00029AA30 /* CommonUI.framework */,
+				7540AB40292585B00029AA30 /* CommonUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7540AB4D292632950029AA30 /* TableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				7540AB4E292632A20029AA30 /* TableHeaderView.swift */,
+			);
+			path = TableHeaderView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -114,6 +204,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7540AB42292585C10029AA30 /* PBXTargetDependency */,
 			);
 			name = CalculatorSDK;
 			productName = CalculatorSDK;
@@ -168,6 +259,12 @@
 			mainGroup = 7540AA50292545000029AA30;
 			productRefGroup = 7540AA5B292545000029AA30 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7540AB39292585B00029AA30 /* Products */;
+					ProjectRef = 7540AB38292585B00029AA30 /* CommonUI.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7540AA59292545000029AA30 /* CalculatorSDK */,
@@ -176,11 +273,29 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		7540AB3E292585B00029AA30 /* CommonUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonUI.framework;
+			remoteRef = 7540AB3D292585B00029AA30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7540AB40292585B00029AA30 /* CommonUITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CommonUITests.xctest;
+			remoteRef = 7540AB3F292585B00029AA30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		7540AA58292545000029AA30 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7540AB322925825D0029AA30 /* preset.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,7 +313,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7540AAD529255C250029AA30 /* ViewController.swift in Sources */,
+				7540AB4F292632A20029AA30 /* TableHeaderView.swift in Sources */,
+				7540AB4A292594E20029AA30 /* SendingViewController.Cell.swift in Sources */,
+				7540AB52292639880029AA30 /* SendingViewController.ViewModel.swift in Sources */,
+				7540AB2F292576B90029AA30 /* Currency.swift in Sources */,
+				7540AAD529255C250029AA30 /* SendingViewController.swift in Sources */,
+				7540AB46292591280029AA30 /* SendingViewController.SendingView.swift in Sources */,
 				7540AAAF2925456E0029AA30 /* Calculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,6 +338,11 @@
 			isa = PBXTargetDependency;
 			target = 7540AA59292545000029AA30 /* CalculatorSDK */;
 			targetProxy = 7540AA64292545000029AA30 /* PBXContainerItemProxy */;
+		};
+		7540AB42292585C10029AA30 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CommonUI;
+			targetProxy = 7540AB41292585C10029AA30 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -355,6 +480,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -384,6 +510,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

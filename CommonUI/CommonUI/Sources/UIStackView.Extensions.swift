@@ -8,13 +8,17 @@
 import UIKit
 
 extension UIStackView {
+
+    /// Creates ``UIStackView`` in declarative manear.
+    ///
     public static func make(
         _ axis: NSLayoutConstraint.Axis,
         spacing: CGFloat = 0,
         distribution: UIStackView.Distribution = .fill,
         alignment: UIStackView.Alignment = .fill
     ) -> (UIView...) -> UIStackView {
-        return { (views: UIView...) -> UIStackView in
+
+        { (views: UIView...) -> UIStackView in
             createStackView(
                 axis,
                 spacing: spacing,
@@ -25,13 +29,16 @@ extension UIStackView {
         }
     }
 
+    /// Creates ``UIStackView`` in declarative manear.
+    ///
     public static func make(
         _ axis: NSLayoutConstraint.Axis,
         spacing: CGFloat = 0,
         distribution: UIStackView.Distribution = .fill,
         alignment: UIStackView.Alignment = .fill
     ) -> ([UIView]) -> UIStackView {
-        return { (views: [UIView]) -> UIStackView in
+
+        { (views: [UIView]) -> UIStackView in
             createStackView(
                 axis,
                 spacing: spacing,
@@ -41,6 +48,8 @@ extension UIStackView {
             )
         }
     }
+
+    // MARK: - Private
 
     private static func createStackView(
         _ axis: NSLayoutConstraint.Axis,
@@ -49,6 +58,7 @@ extension UIStackView {
         alignment: UIStackView.Alignment = .fill,
         subviews: [UIView]
     ) -> UIStackView {
+
         let stack = UIStackView(arrangedSubviews: subviews)
 
         stack.translatesAutoresizingMaskIntoConstraints = false
