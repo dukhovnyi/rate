@@ -59,7 +59,15 @@ extension Calculator {
                                 self?.viewModel.to = newCurrency
                             })
                         }
-                    )
+                    ),
+                    onSwap: { [weak self] in
+
+                        guard let self else { return }
+
+                        let from = self.viewModel.from
+                        self.viewModel.from = self.viewModel.to
+                        self.viewModel.to = from
+                    }
                 )
             )
 
@@ -73,7 +81,7 @@ extension Calculator {
         }
 
         @objc func changeCurrency(_ gesture: UITapGestureRecognizer) {
-            contentView.top.model.onCurrencyChange?()
+            contentView.sending.model.onCurrencyChange?()
         }
 
         private func updateUi() {
@@ -89,11 +97,11 @@ extension Calculator {
 
                 case .success(let fxRate):
                     self.contentView.rateValueView.state = .value("1 \(fxRate.from) ~ \(fxRate.rate) \(fxRate.to)")
-                    self.contentView.top.model.currency = self.viewModel.supportedCurrencies.first(where: { $0.code == fxRate.from })!
-                    self.contentView.top.model.value = fxRate.fromAmount
+                    self.contentView.sending.model.currency = self.viewModel.supportedCurrencies.first(where: { $0.code == fxRate.from })!
+                    self.contentView.sending.model.value = fxRate.fromAmount
 
-                    self.contentView.bottom.model.currency = self.viewModel.supportedCurrencies.first(where: { $0.code == fxRate.to })!
-                    self.contentView.bottom.model.value = fxRate.toAmount
+                    self.contentView.receiving.model.currency = self.viewModel.supportedCurrencies.first(where: { $0.code == fxRate.to })!
+                    self.contentView.receiving.model.value = fxRate.toAmount
                 }
             }
         }
