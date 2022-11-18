@@ -44,7 +44,8 @@ public extension Api.Request where Response == Void {
         endpoint: Api.Endpoint,
         query: [URLQueryItem] = [],
         headers: Api.Headers = [:],
-        httpBody: Data? = nil) {
+        httpBody: Data? = nil
+    ) {
 
         self.init(
             method,
@@ -65,7 +66,8 @@ public extension Api.Request where Response: Decodable {
         query: [URLQueryItem] = [],
         headers: Api.Headers = [:],
         httpBody: Data? = nil,
-        jsonDecoder: JSONDecoder = .init()) {
+        jsonDecoder: JSONDecoder = .init()
+    ) {
 
         self.init(
             method,

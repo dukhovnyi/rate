@@ -13,7 +13,7 @@ public enum Api {
 
     /// HTTP headers.
     ///
-    public typealias Headers = [String: String?]
+    public typealias Headers = [String: String]?
 
     /// Generic response decoder.
     ///
@@ -39,4 +39,29 @@ public enum Api {
     public enum Error: Swift.Error {
         case unknownResponse(URLResponse?)
     }
+
+    static func makeUrlRequest<R>(
+        with apiRequest: Api.Request<R>,
+        baseUrl: URL
+    ) -> URLRequest {
+
+        var components: URLComponents?
+        switch apiRequest.endpoint {
+        case .absolute(let url):
+            components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        case .relative(let path):
+            components = URLComponents(url: baseUrl, resolvingAgainstBaseURL: false)
+            components?.path = path
+        }
+
+        components?.queryItems = apiRequest.query
+
+        var urlRequest = URLRequest(url: components?.url ?? baseUrl)
+        urlRequest.httpMethod = apiRequest.method.rawValue
+        urlRequest.allHTTPHeaderFields = apiRequest.headers
+        urlRequest.httpBody = apiRequest.httpBody
+
+        return urlRequest
+    }
+
 }
