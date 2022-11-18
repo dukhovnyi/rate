@@ -10,7 +10,7 @@ import UIKit
 
 extension Calculator {
 
-    final public class SendingView: View {
+    final class SendingView: View {
 
         lazy var container: UIStackView = .make(.vertical) (
             handleViewContainer,
@@ -29,7 +29,7 @@ extension Calculator {
         }
         let tableView = UITableView()
 
-        public override func setup() {
+        override func setup() {
             super.setup()
 
             addSubview(container)
@@ -38,7 +38,7 @@ extension Calculator {
             backgroundColor = .white
         }
 
-        public override func defineLayout() {
+        override func defineLayout() {
             super.defineLayout()
 
             var constraints = [NSLayoutConstraint](); defer { constraints.activate() }

@@ -21,58 +21,18 @@ extension Calculator {
         public override func viewDidLoad() {
 
             super.viewDidLoad()
-            let gesture = UITapGestureRecognizer(
-                target: self,
-                action: #selector(changeCurrency)
-            )
-            gesture.numberOfTapsRequired = 1
-            contentView.rateValueView.addGestureRecognizer(gesture)
-            contentView.rateValueView.isUserInteractionEnabled = true
-            self.gesture = gesture
-        }
 
-        var gesture: UITapGestureRecognizer?
-
-        // MARK: - Private
-
-        public override func loadView() {
-            view = ComparisonView(
-                model: .init(
-                    from: .init(
-                        kind: .sending,
-                        currency: viewModel.from,
-                        value: Float(viewModel.from.defaultSending),
-                        isValidInput: true,
-                        onCurrencyChange: { [weak self] in
-                            self?.presentCurrencyChooser(currencyDidChange: { [weak self] newCurrency in
-                                self?.viewModel.from = newCurrency
-                            })
-                        }
-                    ),
-                    to: .init(
-                        kind: .receiving,
-                        currency: viewModel.to,
-                        value: nil,
-                        isValidInput: true,
-                        onCurrencyChange: { [weak self] in
-                            self?.presentCurrencyChooser(currencyDidChange: { [weak self] newCurrency in
-                                self?.viewModel.to = newCurrency
-                            })
-                        }
-                    ),
-                    onSwap: { [weak self] in
-
-                        guard let self else { return }
-
-                        let from = self.viewModel.from
-                        self.viewModel.from = self.viewModel.to
-                        self.viewModel.to = from
-                    }
+            contentView.addGestureRecognizer(
+                UITapGestureRecognizer(
+                    target: self,
+                    action: #selector(endEditing)
                 )
             )
-
+            fetch()
             updateUi()
         }
+
+        // MARK: - Private
 
         private var viewModel: ViewModel {
             didSet {
@@ -80,30 +40,95 @@ extension Calculator {
             }
         }
 
-        @objc func changeCurrency(_ gesture: UITapGestureRecognizer) {
-            contentView.sending.model.onCurrencyChange?()
+        @objc func endEditing() {
+            contentView.endEditing(true)
         }
 
         private func updateUi() {
+            
+            contentView.props = .init(
+                from: .init(
+                    kind: .sending,
+                    currency: viewModel.sending,
+                    value: viewModel.sendingValue,
+                    isValidInput: viewModel.valueIsValid,
+                    onCurrencyChange: { [weak self] in
+                        self?.presentCurrencyChooser(currencyDidChange: { [weak self] newCurrency in
+                            self?.viewModel.sending = newCurrency
+                        })
+                    }
+                ),
+                to: .init(
+                    kind: .receiving,
+                    currency: viewModel.receiving,
+                    value: viewModel.receivingValue,
+                    isValidInput: true,
+                    onCurrencyChange: { [weak self] in
+                        self?.presentCurrencyChooser(currencyDidChange: { [weak self] newCurrency in
+                            self?.viewModel.receiving = newCurrency
+                        })
+                    }
+                ),
+                swap: { [weak self] in
+                    
+                    guard let self else { return }
+                    
+                    let from = self.viewModel.sending
+                    let receivingValue = self.viewModel.receivingValue
+                    self.viewModel.sending = self.viewModel.receiving
+                    self.viewModel.receivingValue = self.viewModel.sendingValue
+                    self.viewModel.receiving = from
+                    self.viewModel.sendingValue = receivingValue ?? self.viewModel.sending.defaultSending
 
-            contentView.rateValueView.state = .loading
-            viewModel.getFxRate(viewModel.from, viewModel.to, 100) { [weak self] result in
+                    guard self.checkLimits(sendingValue: self.viewModel.sendingValue) else { return }
 
-                guard let self else { return }
+                    self.fetch()
+                },
+                onAmountChanged: { [weak self] text in
 
-                switch result {
-                case .failure:
-                    break
+                    guard
+                        let self,
+                        let newValue = Float(text)
+                    else {
+                        self?.viewModel.valueIsValid = false
+                        self?.viewModel.receivingValue = nil
+                        self?.contentView.sending.amount.amount.text = text
+                        return
+                    }
 
-                case .success(let fxRate):
-                    self.contentView.rateValueView.state = .value("1 \(fxRate.from) ~ \(fxRate.rate) \(fxRate.to)")
-                    self.contentView.sending.model.currency = self.viewModel.supportedCurrencies.first(where: { $0.code == fxRate.from })!
-                    self.contentView.sending.model.value = fxRate.fromAmount
+                    guard self.viewModel.sendingValue != newValue else { return }
 
-                    self.contentView.receiving.model.currency = self.viewModel.supportedCurrencies.first(where: { $0.code == fxRate.to })!
-                    self.contentView.receiving.model.value = fxRate.toAmount
-                }
+                    self.viewModel.sendingValue = newValue
+                    
+                    guard self.checkLimits(sendingValue: newValue) else { return }
+
+                    self.fetch()
+                },
+                errorMessage: viewModel.errorMessage,
+                fxRateState: viewModel.fxRateState
+            )
+        }
+
+        private func checkLimits(sendingValue: Float) -> Bool {
+            guard
+                self.viewModel.sending.sendingRange.contains(sendingValue)
+            else {
+                self.viewModel.valueIsValid = false
+                self.viewModel.receivingValue = nil
+                let code = viewModel.sending.code
+                let max = viewModel.sending.sendingRange.upperBound
+                let min = viewModel.sending.sendingRange.lowerBound
+
+                self.viewModel.errorMessage = sendingValue > viewModel.sending.sendingRange.upperBound
+                    ? "Maximum sending amount \(max) \(code)"
+                    : "Minimum sending amount \(min) \(code)"
+                return false
             }
+
+            self.viewModel.errorMessage = ""
+            self.viewModel.valueIsValid = true
+
+            return true
         }
 
         private func presentCurrencyChooser(currencyDidChange: @escaping (Calculator.Currency) -> Void) {
@@ -115,6 +140,25 @@ extension Calculator {
                 )
             )
             present(viewController, animated: true)
+        }
+
+        private func fetch() {
+
+            guard viewModel.sendingValue > 0 else { return }
+            contentView.rateValueView.state = .loading
+            viewModel.getFxRate(viewModel.sending, viewModel.receiving, viewModel.sendingValue) { [weak self] result in
+
+                guard let self else { return }
+
+                switch result {
+                case .failure:
+                    break
+
+                case .success(let fxRate):
+                    self.viewModel.fxRateState = .value("1 \(fxRate.from) ~ \(fxRate.rate) \(fxRate.to)")
+                    self.viewModel.receivingValue = fxRate.toAmount
+                }
+            }
         }
     }
 }
@@ -129,13 +173,19 @@ extension Calculator.ComparisonViewController {
         public typealias GetFxRate = (
             _ from: Currency,
             _ to: Currency,
-            _ amount: UInt,
+            _ amount: Float,
             _ completion: @escaping (Result<FxRate, Error>) -> Void
         ) -> Void
 
-        public let supportedCurrencies: [Currency]
-        public var from: Currency
-        public var to: Currency
+        let supportedCurrencies: [Currency]
+        var sending: Currency
+        var receiving: Currency
+        var sendingValue: Float
+        var receivingValue: Float?
+        var valueIsValid = true
+        var errorMessage = ""
+        var fxRateState = Calculator.RateValueView.State.loading
+
         public let getFxRate: GetFxRate
 
         public init(
@@ -144,8 +194,9 @@ extension Calculator.ComparisonViewController {
             supportedCurrencies: [Calculator.Currency],
             getFxRate: @escaping GetFxRate
         ) {
-            self.from = from
-            self.to = to
+            self.sending = from
+            self.sendingValue = from.defaultSending
+            self.receiving = to
             self.supportedCurrencies = supportedCurrencies
             self.getFxRate = getFxRate
         }

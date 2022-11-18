@@ -37,12 +37,12 @@ extension Calculator.SendingViewController: UITableViewDataSource, UITableViewDe
 
     typealias Cell = Calculator.SendingViewControllerCell
 
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         viewModel.currencies.count
     }
 
-    public func tableView(
+    func tableView(
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
@@ -52,7 +52,7 @@ extension Calculator.SendingViewController: UITableViewDataSource, UITableViewDe
         return cell
     }
 
-    public func tableView(
+    func tableView(
         _ tableView: UITableView,
         viewForHeaderInSection section: Int
     ) -> UIView? {

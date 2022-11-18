@@ -29,6 +29,7 @@ final class RootViewController: ViewController<RootViewController.RootView> {
                 to: .hryvna,
                 supportedCurrencies: .mock,
                 getFxRate: { from, to, amount, completion in
+
                     var components = URLComponents(string: "https://my.transfergo.com/api/fx-rates")
                     components?.queryItems = [
                         .init(name: "from", value: from.code),
@@ -57,29 +58,9 @@ final class RootViewController: ViewController<RootViewController.RootView> {
     private let calculator: Calculator
 }
 
-#if DEBUG
-
 extension Calculator.Currency {
 
-    static let zloty: Self = .init(
-        name: "Zloty",
-        img: "PL - Poland",
-        code: "PLN",
-        sending: 0...100,
-        receiving: 0...100,
-        defaultSending: 30
-    )
-
-    static let hryvna: Self = .init(
-        name: "Hryvna",
-        img: "UA - Ukraine",
-        code: "UAH",
-        sending: 0...300,
-        receiving: 0...300,
-        defaultSending: 40
-    )
+    static let zloty: Self = [Calculator.Currency].mock.first(where: { $0.code == "PLN" })!
+    static let hryvna: Self = [Calculator.Currency].mock.first(where: { $0.code == "UAH" })!
 
 }
-
-#endif
-

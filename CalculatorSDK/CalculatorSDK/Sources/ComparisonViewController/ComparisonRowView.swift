@@ -12,7 +12,7 @@ extension Calculator {
 
     final class ComparisonRowView: View {
 
-        var model: Model {
+        var props: Props = .mock {
             didSet {
                 updateUi()
             }
@@ -27,30 +27,12 @@ extension Calculator {
             $0.font = assetBuilder.font(face: .regular, size: 14)
             $0.text = "Sending from"
         }
-        let currencyDropdown: CurrencyDropDownView
+        let currencyDropdown = CurrencyDropDownView()
 
         lazy var rightStackView = UIStackView.make(.horizontal)(
             amount
         )
-        let amount = UILabel().make {
-            $0.textColor = .init(hex: "#000000")
-            $0.font = assetBuilder.font(face: .bold, size: 32)
-        }
-
-        required init() {
-            fatalError("init() has not been implemented")
-        }
-
-        init(
-            model: Model
-        ) {
-            self.model = model
-            self.currencyDropdown = CurrencyDropDownView(
-                model: .init(currency: model.currency, onTouch: model.onCurrencyChange)
-            )
-
-            super.init()
-        }
+        let amount = AmountView()
 
         override func setup() {
 
@@ -75,37 +57,31 @@ extension Calculator {
 
         func updateUi() {
 
-            backgroundColor = model.kind == .sending ? .white : .clear
-            label.text = model.kind == .sending ? "Sending from" : "Receiver gets"
-            if let value = model.value {
-                amount.text = "\(value)"
+            backgroundColor = props.kind == .sending ? .white : .clear
+            label.text = props.kind == .sending ? "Sending from" : "Receiver gets"
+            if let value = props.value {
+                amount.amount.text = String(format: "%.2f", value)
             } else {
-                amount.text = "-"
+                amount.amount.text = "-"
             }
-            if model.isValidInput {
+            if props.isValidInput {
                 layer.borderWidth = 0
-                amount.textColor = model.kind == .sending ? .init(hex: "#317FF5") : .init(hex: "#000000")
+                amount.amount.textColor = props.kind == .sending ? .init(hex: "#317FF5") : .init(hex: "#000000")
             } else {
                 layer.borderColor = UIColor(hex: "#CC3F60")?.cgColor
                 layer.borderWidth = 2
-                amount.textColor = .init(hex: "#CC3F60")
+                amount.amount.textColor = .init(hex: "#CC3F60")
             }
-            currencyDropdown.model.currency = model.currency
+            amount.props.didChange = props.onAmountChanged
+            currencyDropdown.props.currency = props.currency
+            currencyDropdown.props.onTap = props.onCurrencyChange
         }
-
-        // MARK: - Private
-
-        private let formatter: NumberFormatter = {
-            let _formatter = NumberFormatter()
-            _formatter.numberStyle = .decimal
-            return _formatter
-        }()
     }
 }
 
 extension Calculator.ComparisonRowView {
 
-    struct Model {
+    struct Props {
 
         typealias Currency = Calculator.Currency
 
@@ -117,5 +93,54 @@ extension Calculator.ComparisonRowView {
         var isValidInput = true
 
         var onCurrencyChange: (() -> Void)?
+        var onAmountChanged: ((String) -> Void)?
+
+        static let mock: Self = .init(currency: .mock)
+    }
+}
+
+extension Calculator {
+
+    final class AmountView: View, UITextFieldDelegate {
+
+        struct Props {
+            var didChange: ((String) -> Void)?
+        }
+
+        var props = Props()
+
+        let amount = UITextField().make {
+            $0.keyboardType = .numberPad
+            $0.autocorrectionType = .no
+            $0.textColor = .init(hex: "#000000")
+            $0.font = assetBuilder.font(face: .bold, size: 32)
+        }
+
+        override func setup() {
+
+            super.setup()
+            addSubview(amount)
+            amount.delegate = self
+        }
+
+        override func defineLayout() {
+
+            super.defineLayout()
+
+            var constraints = [NSLayoutConstraint](); defer { constraints.activate() }
+            constraints += amount.layoutInSuperview()
+        }
+
+        override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+            guard action != #selector(self.paste(_:)) else {
+                return false
+            }
+            return super.canPerformAction(action, withSender: sender)
+        }
+
+
+        @objc func textFieldDidEndEditing(_ textField: UITextField) {
+            props.didChange?(textField.text ?? "")
+        }
     }
 }

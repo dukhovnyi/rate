@@ -12,12 +12,12 @@ extension Calculator {
 
     final class CurrencyDropDownView: View {
 
-        struct Model {
+        struct Props {
             var currency: Currency
-            var onTouch: (() -> Void)?
+            var onTap: (() -> Void)?
         }
 
-        var model: Model {
+        var props: Props = .init(currency: .mock) {
             didSet {
                 updateUi()
             }
@@ -38,15 +38,6 @@ extension Calculator {
             $0.contentMode = .center
         }
 
-        required init() {
-            fatalError("init() has not been implemented")
-        }
-
-        init(model: Model) {
-            self.model = model
-            super.init()
-        }
-
         override func setup() {
 
             super.setup()
@@ -63,17 +54,22 @@ extension Calculator {
             constraints += flagView.match(value: 24)
 
             updateUi()
+            addGestureRecognizer(
+                UITapGestureRecognizer(
+                    target: self,
+                    action: #selector(tap)
+                )
+            )
         }
 
         func updateUi() {
-            flagView.image = assetBuilder.image(name: model.currency.img)
-            codeLabel.text = model.currency.code.uppercased()
+            flagView.image = assetBuilder.image(name: props.currency.img)
+            codeLabel.text = props.currency.code.uppercased()
         }
 
-        override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-            super.touchesEnded(touches, with: event)
-
-            model.onTouch?()
+        @objc private func tap() {
+            props.onTap?()
         }
     }
 }
+
