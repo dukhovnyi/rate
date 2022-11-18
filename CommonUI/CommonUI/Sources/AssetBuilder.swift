@@ -36,8 +36,8 @@ public struct AssetBuilder {
     public func image(
         name: String
     ) -> UIImage? {
-
-        imageBuilder(name)
+        guard !name.isEmpty else { return nil}
+        return imageBuilder(name)
     }
 
     // MARK: - Private
