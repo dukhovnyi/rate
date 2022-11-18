@@ -14,11 +14,11 @@
 		7540AAA02925451B0029AA30 /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AA9F2925451B0029AA30 /* AppUITests.swift */; };
 		7540AAA22925451B0029AA30 /* AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AAA12925451B0029AA30 /* AppUITestsLaunchTests.swift */; };
 		7540AAC229254B6E0029AA30 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AAC129254B6E0029AA30 /* RootViewController.swift */; };
-		7540AAC629254BE60029AA30 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7540AAC429254BE60029AA30 /* Inter-Regular.ttf */; };
-		7540AAC729254BE60029AA30 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7540AAC529254BE60029AA30 /* Inter-Bold.ttf */; };
 		7540AACA29254C800029AA30 /* UIFont.InterFontFamily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AAC929254C800029AA30 /* UIFont.InterFontFamily.swift */; };
 		7540AB34292582970029AA30 /* RootViewController.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB33292582970029AA30 /* RootViewController.View.swift */; };
 		7540AB9C2927087D0029AA30 /* URL.Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB9B2927087D0029AA30 /* URL.Extensions.swift */; };
+		7540ABA22927CC8C0029AA30 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7540ABA02927CC8C0029AA30 /* Inter-Bold.ttf */; };
+		7540ABA32927CC8C0029AA30 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7540ABA12927CC8C0029AA30 /* Inter-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,13 +114,13 @@
 		7540AAA12925451B0029AA30 /* AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7540AAB3292545B00029AA30 /* CalculatorSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CalculatorSDK.xcodeproj; path = ../CalculatorSDK/CalculatorSDK.xcodeproj; sourceTree = "<group>"; };
 		7540AAC129254B6E0029AA30 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		7540AAC429254BE60029AA30 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Regular.ttf"; path = "../../../../../Downloads/Inter/static/Inter-Regular.ttf"; sourceTree = "<group>"; };
-		7540AAC529254BE60029AA30 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Bold.ttf"; path = "../../../../../Downloads/Inter/static/Inter-Bold.ttf"; sourceTree = "<group>"; };
 		7540AAC929254C800029AA30 /* UIFont.InterFontFamily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.InterFontFamily.swift; sourceTree = "<group>"; };
 		7540AB2029256CE50029AA30 /* CommonUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommonUI.xcodeproj; path = ../CommonUI/CommonUI.xcodeproj; sourceTree = "<group>"; };
 		7540AB33292582970029AA30 /* RootViewController.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.View.swift; sourceTree = "<group>"; };
 		7540AB8E292704410029AA30 /* CommonKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommonKit.xcodeproj; path = ../CommonKit/CommonKit.xcodeproj; sourceTree = "<group>"; };
 		7540AB9B2927087D0029AA30 /* URL.Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.Extensions.swift; sourceTree = "<group>"; };
+		7540ABA02927CC8C0029AA30 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
+		7540ABA12927CC8C0029AA30 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,8 +237,8 @@
 		7540AAC329254BC30029AA30 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7540AAC529254BE60029AA30 /* Inter-Bold.ttf */,
-				7540AAC429254BE60029AA30 /* Inter-Regular.ttf */,
+				7540ABA02927CC8C0029AA30 /* Inter-Bold.ttf */,
+				7540ABA12927CC8C0029AA30 /* Inter-Regular.ttf */,
 				7540AA872925451B0029AA30 /* Assets.xcassets */,
 				7540AA892925451B0029AA30 /* LaunchScreen.storyboard */,
 			);
@@ -438,10 +438,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7540ABA22927CC8C0029AA30 /* Inter-Bold.ttf in Resources */,
 				7540AA8B2925451B0029AA30 /* LaunchScreen.storyboard in Resources */,
-				7540AAC729254BE60029AA30 /* Inter-Bold.ttf in Resources */,
+				7540ABA32927CC8C0029AA30 /* Inter-Regular.ttf in Resources */,
 				7540AA882925451B0029AA30 /* Assets.xcassets in Resources */,
-				7540AAC629254BE60029AA30 /* Inter-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
