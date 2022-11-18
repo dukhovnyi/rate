@@ -47,7 +47,9 @@ Use App.xcworkspace to open it in Xcode. To run application use target - App.
 
 ## Testing
 
-TBD
+|                                                                                  CommonKit                                                                                   | CommonUI |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------: |
+| [![Swift](https://github.com/dukhovnyi/rate/actions/workflows/coverage-commonkit.yml/badge.svg)](https://github.com/dukhovnyi/rate/actions/workflows/coverage-commonkit.yml) |          |
 
 ## CI/CD
 
