@@ -24,6 +24,7 @@
 		7540AB5D292666450029AA30 /* FxRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB5C292666450029AA30 /* FxRate.swift */; };
 		7540AB5F29267E3D0029AA30 /* ComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB5E29267E3D0029AA30 /* ComparisonView.swift */; };
 		7540AB612926ADC50029AA30 /* RateValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB602926ADC50029AA30 /* RateValueView.swift */; };
+		7540AB9E2927825B0029AA30 /* AmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB9D2927825B0029AA30 /* AmountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		7540AB5C292666450029AA30 /* FxRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FxRate.swift; sourceTree = "<group>"; };
 		7540AB5E29267E3D0029AA30 /* ComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisonView.swift; sourceTree = "<group>"; };
 		7540AB602926ADC50029AA30 /* RateValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateValueView.swift; sourceTree = "<group>"; };
+		7540AB9D2927825B0029AA30 /* AmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 				7540AB5E29267E3D0029AA30 /* ComparisonView.swift */,
 				7540AB602926ADC50029AA30 /* RateValueView.swift */,
 				7540AB5A2926657C0029AA30 /* ComparisonRowView.swift */,
+				7540AB9D2927825B0029AA30 /* AmountView.swift */,
 				7540AB5829265FAA0029AA30 /* CurrencyDropDownView.swift */,
 			);
 			path = ComparisonViewController;
@@ -339,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7540AB9E2927825B0029AA30 /* AmountView.swift in Sources */,
 				7540AB4F292632A20029AA30 /* TableHeaderView.swift in Sources */,
 				7540AB5F29267E3D0029AA30 /* ComparisonView.swift in Sources */,
 				7540AB4A292594E20029AA30 /* SendingViewController.Cell.swift in Sources */,

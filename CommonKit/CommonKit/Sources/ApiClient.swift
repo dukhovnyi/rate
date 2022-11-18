@@ -7,8 +7,12 @@
 
 import Foundation
 
+/// Network client for interaction with API.
+///
 public protocol ApiClient {
 
+    /// Sends generic API request.
+    ///
     func request<R>(
         _ req: Api.Request<R>,
         onComplete: @escaping (_ result: Result<R, Error>) -> Void
@@ -17,10 +21,20 @@ public protocol ApiClient {
 
 extension Api {
 
+    /// Cancells network operation.
+    ///
     public typealias Cancellable = () -> Void
 
+    /// Live implementation of network client.
+    ///
     public class Live: ApiClient {
 
+        /// Construct live network client.
+        ///
+        /// - Parameters:
+        ///   - baseUrl: used for building Api requests with relative endpoints.
+        ///   - urlSession: instanse of URLSession that used to create data tasks.
+        ///   
         public init(
             baseUrl: URL,
             urlSession: URLSession = .shared

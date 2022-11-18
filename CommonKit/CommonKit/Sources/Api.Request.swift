@@ -9,6 +9,8 @@ import Foundation
 
 public extension Api {
 
+    /// Defines API requests and decoder for response.
+    /// 
     struct Request<Response> {
         public let method: HttpMethod
         public let endpoint: Endpoint
