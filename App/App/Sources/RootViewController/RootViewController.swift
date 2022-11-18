@@ -12,6 +12,8 @@ import UIKit
 
 final class RootViewController: ViewController<RootViewController.RootView> {
 
+    typealias Pair = (Calculator.Currency, Calculator.Currency)
+
     override init() {
 
         self.calculator = Calculator()
@@ -24,10 +26,49 @@ final class RootViewController: ViewController<RootViewController.RootView> {
 
         super.viewDidLoad()
 
-        let vc = calculator.makeComparisonViewController(
+        contentView.tableView.dataSource = self
+
+        dataSource.append(contentsOf: [
+            (.zloty, .hryvna),
+            (.euro, .krone),
+            (.pound, .kuna),
+        ])
+    }
+
+    // MARK: - Private
+
+    private let calculator: Calculator
+    private let api = Api.Live(baseUrl: .transferGo)
+
+    private var dataSource = [Pair]()
+}
+
+extension RootViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        dataSource.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        let pair = dataSource[indexPath.row]
+        add(
+            viewController: makeComparisonViewController(pair),
+            toContainer: cell.contentView
+        )
+        return cell
+    }
+
+    private func makeComparisonViewController(
+        _ pair: Pair
+    ) -> Calculator.ComparisonViewController {
+
+        var cancellable: (() -> Void)?
+
+        return calculator.makeComparisonViewController(
             viewModel: .init(
-                from: .zloty,
-                to: .hryvna,
+                from: pair.0,
+                to: pair.1,
                 supportedCurrencies: .mock,
                 getFxRate: { [weak self] from, to, amount, completion in
 
@@ -37,22 +78,14 @@ final class RootViewController: ViewController<RootViewController.RootView> {
                         amount: amount
                     )
 
-                    self?.cancellable?()
+                    cancellable?()
 
-                    self?.cancellable = self?.api.request(req) { result in
+                    cancellable = self?.api.request(req) { result in
                         completion(result)
                     }
                 })
         )
-
-        add(viewController: vc, toContainer: contentView.row)
     }
-
-    // MARK: - Private
-
-    private let calculator: Calculator
-    private let api = Api.Live(baseUrl: .transferGo)
-    private var cancellable: (() -> Void)?
 }
 
 extension Calculator.Currency {
@@ -61,24 +94,6 @@ extension Calculator.Currency {
     static let krone: Self = [Calculator.Currency].mock.first(where: { $0.code == "DKK" })!
     static let zloty: Self = [Calculator.Currency].mock.first(where: { $0.code == "PLN" })!
     static let hryvna: Self = [Calculator.Currency].mock.first(where: { $0.code == "UAH" })!
-}
-
-enum ApiRequestBuilder {
-
-    static func fxRate(
-        from: String,
-        to: String,
-        amount: Float
-    ) -> Api.Request<Calculator.FxRate> {
-
-        .init(
-            .get,
-            endpoint: .relative("/api/fx-rates"),
-            query: [
-                .init(name: "from", value: from),
-                .init(name: "to", value: to),
-                .init(name: "amount", value: "\(amount)")
-            ]
-        )
-    }
+    static let pound: Self = [Calculator.Currency].mock.first(where: { $0.code == "GBP" })!
+    static let kuna: Self = [Calculator.Currency].mock.first(where: { $0.code == "HRK" })!
 }

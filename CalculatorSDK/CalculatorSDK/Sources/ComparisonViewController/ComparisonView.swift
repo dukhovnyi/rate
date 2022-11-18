@@ -51,18 +51,20 @@ extension Calculator {
         let swapView: SwapView = .init()
 
         lazy var errorStack = UIStackView.make(.horizontal, spacing: 6)(
-            UIView(),
             errorImage,
-            errorLabel,
-            UIView()
+            errorLabel
         ).make {
             $0.isHidden = true
         }
 
-        let errorImage = UIImageView(image: assetBuilder.image(name: "validation-error"))
+        let errorImage = UIImageView().make {
+            $0.image = assetBuilder.image(name: "validation-error")
+            $0.contentMode = .center
+        }
         let errorLabel = UILabel().make {
             $0.textColor = .init(hex: "#E5476D")
             $0.font = assetBuilder.font(face: .regular, size: 14)
+            $0.numberOfLines = 0
         }
 
         public override func setup() {
@@ -83,7 +85,7 @@ extension Calculator {
 
             constraints += containerStackView.layoutInSuperview(
                 insets: .init(top: 16, left: 20, bottom: 20, right: 16),
-                priority: .defaultHigh
+                priority: .init(999)
             )
 
             constraints += container.layoutInSuperview()
@@ -91,7 +93,7 @@ extension Calculator {
             constraints += rateValueView.layoutInSuperviewCenter()
             constraints += swapView.layoutInSuperviewCenter(edges: .vertical)
             constraints += swapView.layoutInSuperview(edges: .leading, insets: .init(top: 0, left: 44, bottom: 0, right: 0))
-            constraints += errorImage.match(value: 12)
+            constraints += errorImage.match(value: 12, priority: .defaultLow)
         }
 
         func updateUi() {

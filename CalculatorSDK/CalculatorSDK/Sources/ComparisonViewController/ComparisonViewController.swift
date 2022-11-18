@@ -28,8 +28,17 @@ extension Calculator {
                     action: #selector(endEditing)
                 )
             )
-            fetch()
+            fetchFxRate()
             updateUi()
+        }
+
+        public func updateCurrencies(
+            sending: Currency,
+            receiving: Currency
+        ) {
+            viewModel.sending = sending
+            viewModel.receiving = receiving
+            fetchFxRate()
         }
 
         // MARK: - Private
@@ -55,6 +64,7 @@ extension Calculator {
                     onCurrencyChange: { [weak self] in
                         self?.presentCurrencyChooser(currencyDidChange: { [weak self] newCurrency in
                             self?.viewModel.sending = newCurrency
+                            self?.fetchFxRate()
                         })
                     }
                 ),
@@ -66,6 +76,7 @@ extension Calculator {
                     onCurrencyChange: { [weak self] in
                         self?.presentCurrencyChooser(currencyDidChange: { [weak self] newCurrency in
                             self?.viewModel.receiving = newCurrency
+                            self?.fetchFxRate()
                         })
                     }
                 ),
@@ -80,9 +91,8 @@ extension Calculator {
                     self.viewModel.receiving = from
                     self.viewModel.sendingValue = receivingValue ?? self.viewModel.sending.defaultSending
 
-                    guard self.checkLimits(sendingValue: self.viewModel.sendingValue) else { return }
-
-                    self.fetch()
+                    guard self.viewModel.checkLimits(sendingValue: self.viewModel.sendingValue) else { return }
+                    self.fetchFxRate()
                 },
                 onAmountChanged: { [weak self] text in
 
@@ -100,35 +110,12 @@ extension Calculator {
 
                     self.viewModel.sendingValue = newValue
                     
-                    guard self.checkLimits(sendingValue: newValue) else { return }
-
-                    self.fetch()
+                    guard self.viewModel.checkLimits(sendingValue: newValue) else { return }
+                    self.fetchFxRate()
                 },
                 errorMessage: viewModel.errorMessage,
                 fxRateState: viewModel.fxRateState
             )
-        }
-
-        private func checkLimits(sendingValue: Float) -> Bool {
-            guard
-                self.viewModel.sending.sendingRange.contains(sendingValue)
-            else {
-                self.viewModel.valueIsValid = false
-                self.viewModel.receivingValue = nil
-                let code = viewModel.sending.code
-                let max = viewModel.sending.sendingRange.upperBound
-                let min = viewModel.sending.sendingRange.lowerBound
-
-                self.viewModel.errorMessage = sendingValue > viewModel.sending.sendingRange.upperBound
-                    ? "Maximum sending amount \(max) \(code)"
-                    : "Minimum sending amount \(min) \(code)"
-                return false
-            }
-
-            self.viewModel.errorMessage = ""
-            self.viewModel.valueIsValid = true
-
-            return true
         }
 
         private func presentCurrencyChooser(currencyDidChange: @escaping (Calculator.Currency) -> Void) {
@@ -142,21 +129,24 @@ extension Calculator {
             present(viewController, animated: true)
         }
 
-        private func fetch() {
+        private func fetchFxRate() {
 
-            guard viewModel.sendingValue > 0 else { return }
-            contentView.rateValueView.state = .loading
-            viewModel.getFxRate(viewModel.sending, viewModel.receiving, viewModel.sendingValue) { [weak self] result in
+            viewModel.fxRateState = .loading
 
-                guard let self else { return }
+            viewModel.fetch { [weak self] result in
 
-                switch result {
-                case .failure:
-                    break
+                DispatchQueue.main.async { [weak self] in
 
-                case .success(let fxRate):
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self else { return }
+                    guard let self else { return }
+
+                    switch result {
+
+                    case .failure:
+                        self.viewModel.fxRateState = .value("---")
+                        self.viewModel.errorMessage = "Unexpected error occured. Please try again later."
+                        self.viewModel.receivingValue = nil
+
+                    case .success(let fxRate):
                         self.viewModel.fxRateState = .value("1 \(fxRate.from) ~ \(fxRate.rate) \(fxRate.to)")
                         self.viewModel.receivingValue = fxRate.toAmount
                     }
@@ -202,6 +192,40 @@ extension Calculator.ComparisonViewController {
             self.receiving = to
             self.supportedCurrencies = supportedCurrencies
             self.getFxRate = getFxRate
+        }
+
+        mutating func checkLimits(sendingValue: Float) -> Bool {
+            guard
+                sending.sendingRange.contains(sendingValue)
+            else {
+                self.valueIsValid = false
+                self.receivingValue = nil
+                let code = sending.code
+                let max = sending.sendingRange.upperBound
+                let min = sending.sendingRange.lowerBound
+
+                self.errorMessage = sendingValue > sending.sendingRange.upperBound
+                    ? "Maximum sending amount \(max) \(code)"
+                    : "Minimum sending amount \(min) \(code)"
+                return false
+            }
+
+            self.errorMessage = ""
+            self.valueIsValid = true
+
+            return true
+        }
+
+        func fetch(onComplete: @escaping (Result<FxRate, Error>) -> Void) {
+
+            guard sendingValue > 0 else { return }
+
+            getFxRate(
+                sending,
+                receiving,
+                sendingValue,
+                onComplete
+            )
         }
     }
 }

@@ -14,7 +14,10 @@ extension RootViewController {
 
         let contentView = UIView()
 
-        let row = UIView()
+        lazy var tableView = UITableView().make {
+            $0.separatorColor = .clear
+            $0.contentInset = .init(top: 0, left: 0, bottom: buttonBarHeight, right: 0)
+        }
 
         let requestButton = UIButton(type: .system).make {
             $0.setTitleColor(.darkGray, for: .normal)
@@ -45,7 +48,7 @@ extension RootViewController {
         override func setup() {
             super.setup()
             addSubview(contentView)
-            contentView.addSubview(row)
+            contentView.addSubview(tableView)
             addSubview(buttonsStack)
         }
 
@@ -66,9 +69,13 @@ extension RootViewController {
                 edges: .bottom,
                 insets: .init(top: 0, left: 0, bottom: 16, right: 0)
             )
-            constraints += buttonsStack.match(.height, value: 48)
+            constraints += buttonsStack.match(.height, value: buttonBarHeight)
 
-            constraints += row.layoutIn(safeAreaLayoutGuide, edges: [.horizontal, .top])
+            constraints += tableView.layoutInSuperview()
         }
+
+        // MARK: - Private
+
+        private let buttonBarHeight: CGFloat = 48
     }
 }

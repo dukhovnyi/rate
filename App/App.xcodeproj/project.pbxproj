@@ -19,6 +19,7 @@
 		7540AB9C2927087D0029AA30 /* URL.Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB9B2927087D0029AA30 /* URL.Extensions.swift */; };
 		7540ABA22927CC8C0029AA30 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7540ABA02927CC8C0029AA30 /* Inter-Bold.ttf */; };
 		7540ABA32927CC8C0029AA30 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7540ABA12927CC8C0029AA30 /* Inter-Regular.ttf */; };
+		7540ABAC292832E70029AA30 /* ApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540ABAB292832E60029AA30 /* ApiRequestBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		7540AB9B2927087D0029AA30 /* URL.Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.Extensions.swift; sourceTree = "<group>"; };
 		7540ABA02927CC8C0029AA30 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		7540ABA12927CC8C0029AA30 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		7540ABAB292832E60029AA30 /* ApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				7540AAC129254B6E0029AA30 /* RootViewController.swift */,
+				7540ABAB292832E60029AA30 /* ApiRequestBuilder.swift */,
 				7540AB33292582970029AA30 /* RootViewController.View.swift */,
 			);
 			path = RootViewController;
@@ -466,6 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7540ABAC292832E70029AA30 /* ApiRequestBuilder.swift in Sources */,
 				7540AB34292582970029AA30 /* RootViewController.View.swift in Sources */,
 				7540AA7F2925451A0029AA30 /* AppDelegate.swift in Sources */,
 				7540AB9C2927087D0029AA30 /* URL.Extensions.swift in Sources */,
