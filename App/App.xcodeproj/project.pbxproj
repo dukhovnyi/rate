@@ -18,6 +18,7 @@
 		7540AAC729254BE60029AA30 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7540AAC529254BE60029AA30 /* Inter-Bold.ttf */; };
 		7540AACA29254C800029AA30 /* UIFont.InterFontFamily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AAC929254C800029AA30 /* UIFont.InterFontFamily.swift */; };
 		7540AB34292582970029AA30 /* RootViewController.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB33292582970029AA30 /* RootViewController.View.swift */; };
+		7540AB9C2927087D0029AA30 /* URL.Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7540AB9B2927087D0029AA30 /* URL.Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,27 @@
 			remoteGlobalIDString = 7540AAE729256C290029AA30;
 			remoteInfo = CommonUI;
 		};
+		7540AB94292704410029AA30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7540AB8E292704410029AA30 /* CommonKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7540AB6C292703CB0029AA30;
+			remoteInfo = CommonKit;
+		};
+		7540AB96292704410029AA30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7540AB8E292704410029AA30 /* CommonKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7540AB74292703CB0029AA30;
+			remoteInfo = CommonKitTests;
+		};
+		7540AB99292704490029AA30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7540AB8E292704410029AA30 /* CommonKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7540AB6B292703CB0029AA30;
+			remoteInfo = CommonKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +119,8 @@
 		7540AAC929254C800029AA30 /* UIFont.InterFontFamily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.InterFontFamily.swift; sourceTree = "<group>"; };
 		7540AB2029256CE50029AA30 /* CommonUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommonUI.xcodeproj; path = ../CommonUI/CommonUI.xcodeproj; sourceTree = "<group>"; };
 		7540AB33292582970029AA30 /* RootViewController.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.View.swift; sourceTree = "<group>"; };
+		7540AB8E292704410029AA30 /* CommonKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommonKit.xcodeproj; path = ../CommonKit/CommonKit.xcodeproj; sourceTree = "<group>"; };
+		7540AB9B2927087D0029AA30 /* URL.Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +200,7 @@
 		7540AAB2292545A40029AA30 /* References */ = {
 			isa = PBXGroup;
 			children = (
+				7540AB8E292704410029AA30 /* CommonKit.xcodeproj */,
 				7540AB2029256CE50029AA30 /* CommonUI.xcodeproj */,
 				7540AAB3292545B00029AA30 /* CalculatorSDK.xcodeproj */,
 			);
@@ -224,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				7540AAC929254C800029AA30 /* UIFont.InterFontFamily.swift */,
+				7540AB9B2927087D0029AA30 /* URL.Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -233,6 +259,15 @@
 			children = (
 				7540AB2629256CE50029AA30 /* CommonUI.framework */,
 				7540AB2829256CE50029AA30 /* CommonUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7540AB8F292704410029AA30 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7540AB95292704410029AA30 /* CommonKit.framework */,
+				7540AB97292704410029AA30 /* CommonKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -251,6 +286,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7540AB9A292704490029AA30 /* PBXTargetDependency */,
 				7540AB2A29256CEE0029AA30 /* PBXTargetDependency */,
 				7540AABD292545C50029AA30 /* PBXTargetDependency */,
 			);
@@ -335,6 +371,10 @@
 					ProjectRef = 7540AAB3292545B00029AA30 /* CalculatorSDK.xcodeproj */;
 				},
 				{
+					ProductGroup = 7540AB8F292704410029AA30 /* Products */;
+					ProjectRef = 7540AB8E292704410029AA30 /* CommonKit.xcodeproj */;
+				},
+				{
 					ProductGroup = 7540AB2129256CE50029AA30 /* Products */;
 					ProjectRef = 7540AB2029256CE50029AA30 /* CommonUI.xcodeproj */;
 				},
@@ -377,6 +417,20 @@
 			remoteRef = 7540AB2729256CE50029AA30 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		7540AB95292704410029AA30 /* CommonKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonKit.framework;
+			remoteRef = 7540AB94292704410029AA30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7540AB97292704410029AA30 /* CommonKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CommonKitTests.xctest;
+			remoteRef = 7540AB96292704410029AA30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -414,6 +468,7 @@
 			files = (
 				7540AB34292582970029AA30 /* RootViewController.View.swift in Sources */,
 				7540AA7F2925451A0029AA30 /* AppDelegate.swift in Sources */,
+				7540AB9C2927087D0029AA30 /* URL.Extensions.swift in Sources */,
 				7540AACA29254C800029AA30 /* UIFont.InterFontFamily.swift in Sources */,
 				7540AAC229254B6E0029AA30 /* RootViewController.swift in Sources */,
 			);
@@ -458,6 +513,11 @@
 			isa = PBXTargetDependency;
 			name = CommonUI;
 			targetProxy = 7540AB2929256CEE0029AA30 /* PBXContainerItemProxy */;
+		};
+		7540AB9A292704490029AA30 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CommonKit;
+			targetProxy = 7540AB99292704490029AA30 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

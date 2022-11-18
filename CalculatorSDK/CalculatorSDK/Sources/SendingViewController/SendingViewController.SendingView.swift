@@ -43,7 +43,7 @@ extension Calculator {
 
             var constraints = [NSLayoutConstraint](); defer { constraints.activate() }
 
-            constraints += container.layoutInSuperview()
+            constraints += container.layoutIn(safeAreaLayoutGuide)
 
             constraints += handleView.layoutInSuperviewCenter()
             constraints += handleView.match(.height, value: 4)

@@ -10,4 +10,7 @@
    <FileRef
       location = "group:CalculatorSDK/CalculatorSDK.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:CommonKit/CommonKit.xcodeproj">
+   </FileRef>
 </Workspace>

@@ -155,8 +155,11 @@ extension Calculator {
                     break
 
                 case .success(let fxRate):
-                    self.viewModel.fxRateState = .value("1 \(fxRate.from) ~ \(fxRate.rate) \(fxRate.to)")
-                    self.viewModel.receivingValue = fxRate.toAmount
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self else { return }
+                        self.viewModel.fxRateState = .value("1 \(fxRate.from) ~ \(fxRate.rate) \(fxRate.to)")
+                        self.viewModel.receivingValue = fxRate.toAmount
+                    }
                 }
             }
         }

@@ -6,6 +6,7 @@
 //
 
 import CalculatorSDK
+import CommonKit
 import CommonUI
 import UIKit
 
@@ -28,25 +29,19 @@ final class RootViewController: ViewController<RootViewController.RootView> {
                 from: .zloty,
                 to: .hryvna,
                 supportedCurrencies: .mock,
-                getFxRate: { from, to, amount, completion in
+                getFxRate: { [weak self] from, to, amount, completion in
 
-                    var components = URLComponents(string: "https://my.transfergo.com/api/fx-rates")
-                    components?.queryItems = [
-                        .init(name: "from", value: from.code),
-                        .init(name: "to", value: to.code),
-                        .init(name: "amount", value: "\(amount)")
-                    ]
+                    let req = ApiRequestBuilder.fxRate(
+                        from: from.code,
+                        to: to.code,
+                        amount: amount
+                    )
 
-                    guard
-                        let url = components?.url,
-                        let jsonData = try? Data(contentsOf: url),
-                        let fxRate = try? JSONDecoder().decode(Calculator.FxRate.self, from: jsonData)
-                    else {
-                        completion(.failure(URLError(_nsError: .init())))
-                        return
+                    self?.cancellable?()
+
+                    self?.cancellable = self?.api.request(req) { result in
+                        completion(result)
                     }
-
-                    completion(.success(fxRate))
                 })
         )
 
@@ -56,11 +51,34 @@ final class RootViewController: ViewController<RootViewController.RootView> {
     // MARK: - Private
 
     private let calculator: Calculator
+    private let api = Api.Live(baseUrl: .transferGo)
+    private var cancellable: (() -> Void)?
 }
 
 extension Calculator.Currency {
 
+    static let euro: Self = [Calculator.Currency].mock.first(where: { $0.code == "EUR" })!
+    static let krone: Self = [Calculator.Currency].mock.first(where: { $0.code == "DKK" })!
     static let zloty: Self = [Calculator.Currency].mock.first(where: { $0.code == "PLN" })!
     static let hryvna: Self = [Calculator.Currency].mock.first(where: { $0.code == "UAH" })!
+}
 
+enum ApiRequestBuilder {
+
+    static func fxRate(
+        from: String,
+        to: String,
+        amount: Float
+    ) -> Api.Request<Calculator.FxRate> {
+
+        .init(
+            .get,
+            endpoint: .relative("/api/fx-rates"),
+            query: [
+                .init(name: "from", value: from),
+                .init(name: "to", value: to),
+                .init(name: "amount", value: "\(amount)")
+            ]
+        )
+    }
 }
