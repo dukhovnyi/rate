@@ -83,15 +83,12 @@ extension Calculator {
                 swap: { [weak self] in
                     
                     guard let self else { return }
-                    
-                    let from = self.viewModel.sending
-                    let receivingValue = self.viewModel.receivingValue
-                    self.viewModel.sending = self.viewModel.receiving
-                    self.viewModel.receivingValue = self.viewModel.sendingValue
-                    self.viewModel.receiving = from
-                    self.viewModel.sendingValue = receivingValue ?? self.viewModel.sending.defaultSending
 
-                    guard self.viewModel.checkLimits(sendingValue: self.viewModel.sendingValue) else { return }
+                    self.viewModel.swap()
+                    guard
+                        self.viewModel.validate(sendingValue: self.viewModel.sendingValue)
+                    else { return }
+
                     self.fetchFxRate()
                 },
                 onAmountChanged: { [weak self] text in
@@ -110,7 +107,7 @@ extension Calculator {
 
                     self.viewModel.sendingValue = newValue
                     
-                    guard self.viewModel.checkLimits(sendingValue: newValue) else { return }
+                    guard self.viewModel.validate(sendingValue: newValue) else { return }
                     self.fetchFxRate()
                 },
                 errorMessage: viewModel.errorMessage,
@@ -194,7 +191,17 @@ extension Calculator.ComparisonViewController {
             self.getFxRate = getFxRate
         }
 
-        mutating func checkLimits(sendingValue: Float) -> Bool {
+        mutating func swap() {
+
+            let from = sending
+            let receivingValue = receivingValue
+            self.sending = receiving
+            self.receivingValue = self.sendingValue
+            self.receiving = from
+            self.sendingValue = receivingValue ?? self.sending.defaultSending
+        }
+
+        mutating func validate(sendingValue: Float) -> Bool {
             guard
                 sending.sendingRange.contains(sendingValue)
             else {

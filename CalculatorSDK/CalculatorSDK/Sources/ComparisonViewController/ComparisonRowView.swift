@@ -95,6 +95,6 @@ extension Calculator.ComparisonRowView {
         var onCurrencyChange: (() -> Void)?
         var onAmountChanged: ((String) -> Void)?
 
-        static let mock: Self = .init(currency: .mock)
+        static let mock: Self = .init(currency: .mock())
     }
 }

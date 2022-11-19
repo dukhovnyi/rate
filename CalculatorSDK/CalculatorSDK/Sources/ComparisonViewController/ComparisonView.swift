@@ -113,8 +113,8 @@ extension Calculator {
 extension Calculator.ComparisonView {
 
     struct Props {
-        var from: Calculator.ComparisonRowView.Props = .init(currency: .mock)
-        var to: Calculator.ComparisonRowView.Props = .init(currency: .mock)
+        var from: Calculator.ComparisonRowView.Props = .init(currency: .mock())
+        var to: Calculator.ComparisonRowView.Props = .init(currency: .mock())
         var swap: (() -> Void)? = nil
         var onAmountChanged: ((String) -> Void)? = nil
         var errorMessage = ""

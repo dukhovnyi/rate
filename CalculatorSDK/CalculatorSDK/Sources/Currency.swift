@@ -9,7 +9,7 @@ import Foundation
 
 extension Calculator {
 
-    public struct Currency {
+    public struct Currency: Equatable {
 
         public let name: String
         public let img: String
@@ -34,14 +34,24 @@ extension Calculator {
             self.defaultSending = defaultSending
         }
 
-        static let mock: Self = .init(
-            name: "",
-            img: "",
-            code: "",
-            sending: 0...1,
-            receiving: 0...1,
-            defaultSending: 0
-        )
+        static func mock (
+            name: String = "",
+            img: String = "",
+            code: String = "",
+            sending: ClosedRange<Float> = 0 ... 100,
+            receiving: ClosedRange<Float> = 0 ... 100,
+            defaulSending: Float = 1
+        ) -> Self {
+
+            .init(
+                name: name,
+                img: img,
+                code: code,
+                sending: sending,
+                receiving: receiving,
+                defaultSending: defaulSending
+            )
+        }
     }
 }
 

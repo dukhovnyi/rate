@@ -17,7 +17,7 @@ extension Calculator {
             var onTap: (() -> Void)?
         }
 
-        var props: Props = .init(currency: .mock) {
+        var props: Props = .init(currency: .mock()) {
             didSet {
                 updateUi()
             }

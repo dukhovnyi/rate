@@ -47,9 +47,9 @@ Use App.xcworkspace to open it in Xcode. To run application use target - App.
 
 ## Testing
 
-|                                                                                  CommonKit                                                                                   | CommonUI |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------: |
-| [![Swift](https://github.com/dukhovnyi/rate/actions/workflows/coverage-commonkit.yml/badge.svg)](https://github.com/dukhovnyi/rate/actions/workflows/coverage-commonkit.yml) |          |
+|                                                                                  CommonKit                                                                                   |                                                                                    CalkulatorSDK                                                                                     |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [![Swift](https://github.com/dukhovnyi/rate/actions/workflows/coverage-commonkit.yml/badge.svg)](https://github.com/dukhovnyi/rate/actions/workflows/coverage-commonkit.yml) | [![Swift](https://github.com/dukhovnyi/rate/actions/workflows/coverage-calculatorsdk.yml/badge.svg)](https://github.com/dukhovnyi/rate/actions/workflows/coverage-calculatorsdk.yml) |
 
 ## CI/CD
 
