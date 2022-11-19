@@ -34,6 +34,8 @@ extension Calculator {
         )
 
         let sending = ComparisonRowView().make {
+            $0.accessibilityTraits = .staticText
+            $0.accessibilityIdentifier = "row-sending"
             $0.props.kind = .sending
             $0.layer.cornerRadius = 16
             $0.layer.shadowRadius = 16
@@ -43,6 +45,8 @@ extension Calculator {
             $0.layer.masksToBounds = false
         }
         let receiving = ComparisonRowView().make {
+            $0.accessibilityTraits = .staticText
+            $0.accessibilityIdentifier = "row-receiving"
             $0.props.kind = .receiving
             $0.amount.isUserInteractionEnabled = false
         }
@@ -62,9 +66,16 @@ extension Calculator {
             $0.contentMode = .center
         }
         let errorLabel = UILabel().make {
+            $0.accessibilityIdentifier = "error-message"
             $0.textColor = .init(hex: "#E5476D")
             $0.font = assetBuilder.font(face: .regular, size: 14)
             $0.numberOfLines = 0
+        }
+
+        public required init() {
+            super.init()
+            accessibilityIdentifier = "root-view"
+            accessibilityTraits = .button
         }
 
         public override func setup() {
@@ -119,54 +130,5 @@ extension Calculator.ComparisonView {
         var onAmountChanged: ((String) -> Void)? = nil
         var errorMessage = ""
         var fxRateState = Calculator.RateValueView.State.loading
-    }
-}
-
-extension Calculator.ComparisonView {
-
-    final class SwapView: View {
-
-        struct Props {
-            var tap: (() -> Void)?
-        }
-
-        var props = Props()
-
-        let container = UIView().make {
-            $0.backgroundColor = .init(hex: "#317FF5")
-            $0.layer.cornerRadius = 12
-        }
-        let image = UIImageView(image: assetBuilder.image(name: "swap"))
-
-        override func setup() {
-
-            super.setup()
-
-            container.addSubview(image)
-            addSubview(container)
-        }
-
-        override func defineLayout() {
-
-            super.defineLayout()
-
-            var constraints = [NSLayoutConstraint](); defer { constraints.activate() }
-            constraints += container.layoutInSuperview()
-            constraints += image.layoutInSuperview(insets: .init(top: 4, left: 4, bottom: 4, right: 4))
-            constraints += image.match(value: 16)
-
-            addGestureRecognizer(
-                UITapGestureRecognizer(
-                    target: self,
-                    action: #selector(tap)
-                )
-            )
-        }
-
-        // MARK: - Private
-
-        @objc private func tap() {
-            props.tap?()
-        }
     }
 }

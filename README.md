@@ -53,4 +53,4 @@ Use App.xcworkspace to open it in Xcode. To run application use target - App.
 
 ## CI/CD
 
-TBD
+Unit and UI tests run using [GitHub Actions](.github/workflows). Tests are implemented using [XCTest](https://developer.apple.com/documentation/xctest) as native solution for iOS.

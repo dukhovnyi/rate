@@ -14,32 +14,32 @@ extension Calculator {
         public let name: String
         public let img: String
         public let code: String
-        public let sendingRange: ClosedRange<Float>
-        public let receiving: ClosedRange<Float>
+        public let sendingLimits: ClosedRange<Float>
+        public let receivingLimits: ClosedRange<Float>
         public let defaultSending: Float
 
         public init(
             name: String,
             img: String,
             code: String,
-            sending: ClosedRange<Float>,
-            receiving: ClosedRange<Float>,
+            sendingLimits: ClosedRange<Float>,
+            receivingLimits: ClosedRange<Float>,
             defaultSending: Float
         ) {
             self.name = name
             self.img = img
             self.code = code
-            self.sendingRange = sending
-            self.receiving = receiving
+            self.sendingLimits = sendingLimits
+            self.receivingLimits = receivingLimits
             self.defaultSending = defaultSending
         }
 
-        static func mock (
+        public static func mock (
             name: String = "",
             img: String = "",
             code: String = "",
-            sending: ClosedRange<Float> = 0 ... 100,
-            receiving: ClosedRange<Float> = 0 ... 100,
+            sendingLimits: ClosedRange<Float> = 0 ... 100,
+            receivingLimits: ClosedRange<Float> = 0 ... 100,
             defaulSending: Float = 1
         ) -> Self {
 
@@ -47,8 +47,8 @@ extension Calculator {
                 name: name,
                 img: img,
                 code: code,
-                sending: sending,
-                receiving: receiving,
+                sendingLimits: sendingLimits,
+                receivingLimits: receivingLimits,
                 defaultSending: defaulSending
             )
         }
@@ -88,10 +88,10 @@ extension Calculator.Currency: Codable {
         self.code = try container.decode(String.self, forKey: .code)
         self.defaultSending = try container.decode(Float.self, forKey: .defaultSending)
 
-        receiving = try Self.decodeRange(
+        receivingLimits = try Self.decodeRange(
             container: container.nestedContainer(keyedBy: RangeKeys.self, forKey: .receiving)
         )
-        sendingRange = try Self.decodeRange(
+        sendingLimits = try Self.decodeRange(
             container: container.nestedContainer(keyedBy: RangeKeys.self, forKey: .sending)
         )
     }
@@ -105,12 +105,12 @@ extension Calculator.Currency: Codable {
         try container.encode(defaultSending, forKey: .defaultSending)
 
         var receivingContainer = container.nestedContainer(keyedBy: RangeKeys.self, forKey: .receiving)
-        try receivingContainer.encode(receiving.lowerBound, forKey: .from)
-        try receivingContainer.encodeIfPresent(receiving.upperBound == Float.infinity ? nil : receiving.upperBound, forKey: .to)
+        try receivingContainer.encode(receivingLimits.lowerBound, forKey: .from)
+        try receivingContainer.encodeIfPresent(receivingLimits.upperBound == Float.infinity ? nil : receivingLimits.upperBound, forKey: .to)
 
         var sendingContainer = container.nestedContainer(keyedBy: RangeKeys.self, forKey: .sending)
-        try sendingContainer.encode(sendingRange.lowerBound, forKey: .from)
-        try sendingContainer.encodeIfPresent(sendingRange.upperBound == Float.infinity ? nil : sendingRange.upperBound, forKey: .to)
+        try sendingContainer.encode(sendingLimits.lowerBound, forKey: .from)
+        try sendingContainer.encodeIfPresent(sendingLimits.upperBound == Float.infinity ? nil : sendingLimits.upperBound, forKey: .to)
     }
 
     // MARK: - Private

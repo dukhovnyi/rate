@@ -31,6 +31,7 @@ extension Calculator {
 
         let flagView = UIImageView()
         let codeLabel = UILabel().make {
+            $0.accessibilityIdentifier = "currency-code"
             $0.font = assetBuilder.font(face: .bold, size: 14)
             $0.text = "Choose currency"
         }

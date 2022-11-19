@@ -1,0 +1,13 @@
+{
+    "code" : "GBP",
+    "img": "GB-UKM - United Kingdom",
+    "sending" : {
+        "to" : 1000,
+        "from" : 1
+    },
+    "name" : "British Pound",
+    "defaultSending" : 70,
+    "receiving" : {
+        "from" : 0
+    }
+}

@@ -57,7 +57,7 @@ final class ComparisonViewControllerViewModelTests: XCTestCase {
     func testCheckLimits__validValue() throws {
 
         var vm = ViewModel(
-            from: .mock(sending: 0 ... 5),
+            from: .mock(sendingLimits: 0 ... 5),
             to: .mock(),
             supportedCurrencies: .mock,
             getFxRate: { _, _, _, _ in }
@@ -75,7 +75,7 @@ final class ComparisonViewControllerViewModelTests: XCTestCase {
     func testCheckLimits__outOfLimitsMax() throws {
 
         var vm = ViewModel(
-            from: .mock(code: "TST", sending: 0 ... 5),
+            from: .mock(code: "TST", sendingLimits: 0 ... 5),
             to: .mock(),
             supportedCurrencies: .mock,
             getFxRate: { _, _, _, _ in }
@@ -94,7 +94,7 @@ final class ComparisonViewControllerViewModelTests: XCTestCase {
     func testCheckLimits__outOfLimitsMin() throws {
 
         var vm = ViewModel(
-            from: .mock(code: "TST", sending: 5 ... 10),
+            from: .mock(code: "TST", sendingLimits: 5 ... 10),
             to: .mock(),
             supportedCurrencies: .mock,
             getFxRate: { _, _, _, _ in }
@@ -112,8 +112,8 @@ final class ComparisonViewControllerViewModelTests: XCTestCase {
 
     func testSwap() throws {
 
-        let from: ViewModel.Currency = .mock(code: "FROM", sending: 5 ... 10)
-        let to: ViewModel.Currency = .mock(code: "TO", sending: 5 ... 10)
+        let from: ViewModel.Currency = .mock(code: "FROM", sendingLimits: 5 ... 10)
+        let to: ViewModel.Currency = .mock(code: "TO", sendingLimits: 5 ... 10)
 
         var vm = ViewModel(
             from: from,

@@ -19,6 +19,7 @@ extension Calculator {
         var props = Props()
 
         let amount = UITextField().make {
+            $0.accessibilityIdentifier = "amount-view-value"
             $0.keyboardType = .numberPad
             $0.autocorrectionType = .no
             $0.textColor = .init(hex: "#000000")

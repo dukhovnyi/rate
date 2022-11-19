@@ -1,0 +1,13 @@
+{
+    "code" : "EUR",
+    "img": "EUROPE",
+    "sending" : {
+        "to" : 5000,
+        "from" : 0
+    },
+    "name" : "Euro",
+    "defaultSending" : 100,
+    "receiving" : {
+        "from" : 0
+    }
+}

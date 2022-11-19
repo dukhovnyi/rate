@@ -203,15 +203,15 @@ extension Calculator.ComparisonViewController {
 
         mutating func validate(sendingValue: Float) -> Bool {
             guard
-                sending.sendingRange.contains(sendingValue)
+                sending.sendingLimits.contains(sendingValue)
             else {
                 self.valueIsValid = false
                 self.receivingValue = nil
                 let code = sending.code
-                let max = sending.sendingRange.upperBound
-                let min = sending.sendingRange.lowerBound
+                let max = sending.sendingLimits.upperBound
+                let min = sending.sendingLimits.lowerBound
 
-                self.errorMessage = sendingValue > sending.sendingRange.upperBound
+                self.errorMessage = sendingValue > sending.sendingLimits.upperBound
                     ? "Maximum sending amount \(max) \(code)"
                     : "Minimum sending amount \(min) \(code)"
                 return false
